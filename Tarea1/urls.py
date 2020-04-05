@@ -16,8 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
-from django.config import settings
-from django.config.ursl.static import static
+from django.conf import settings
+from django.conf.ursl.static import static
     
 
 urlpatterns = [
