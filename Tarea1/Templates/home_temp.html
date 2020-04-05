@@ -11,7 +11,7 @@
       {% if list_episodes %} 
           {% for episode in list_episodes %} 
           
-              <li> Name: <a href="/episode/{{ episode.id }}">{{episode.name}}</a>
+              <li> Name: <a href="{% url 'episode' id={{episode.id}} %}">{{episode.name}}</a>
               -  Air date: {{episode.air_date}} - Episode code: {{episode.episode}} 
             </li> 
         
