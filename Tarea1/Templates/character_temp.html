@@ -19,7 +19,7 @@
         <li> Type: {{ch_type}} </li>  
         <li> Gender: {{gender}} </li> 
 
-        {% if origin %}
+        {% if origin.name %}
 
         <li> Origin: <a href="{% url 'location' id=origin.id %}">{{origin.name}} </a> </li>  
 
@@ -37,7 +37,7 @@
           {% else %}
               <p> El personaje no tiene registrada una última ubicación</p>
           {% endif %}
-          
+
 
           {% if episodes %}
           <li>Episodes:</li>
