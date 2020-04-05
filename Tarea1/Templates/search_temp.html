@@ -6,7 +6,7 @@
   <body>
     <div class="wrapper">   
       <nav class="main-nav">
-        <a href="">Back Home</a> <!-- CAMBIARLE EL LINK AL DEL GITHUB PAGES-->
+        <a href="{% url 'home' %}">Back Home</a> <!-- CAMBIARLE EL LINK AL DEL GITHUB PAGES-->
       </nav>
     </div>
 
@@ -17,7 +17,7 @@
       <ul>
           {% for episode in episodes %} 
           
-              <li> Episode name: <a href="episode/{{ episode.id }}"> {{episode.name}} </a></li> 
+              <li> Episode name: <a href="{% url 'episode' id=episode.id %}"> {{episode.name}} </a></li> 
         
           {% endfor %} 
         </ul>
@@ -36,7 +36,7 @@
 
             {% for character in characters %} 
             
-              <li> Character name: <a href="character/{{ character.id }}"> {{character.name}} </a></li>   <!-- CAMBIARLE EL LINK AL DEL GITHUB PAGES-->
+              <li> Character name: <a href="{% url 'character' id=character.id %}"> {{character.name}} </a></li>   <!-- CAMBIARLE EL LINK AL DEL GITHUB PAGES-->
               
             {% endfor %} 
 
@@ -55,7 +55,7 @@
 
         {% for location in locations %} 
         
-        <li> Location name: <a href="location/{{ location.id }}"> {{location.name}} </a>  </li> 
+        <li> Location name: <a href="{% url 'location' id=location.id %}"> {{location.name}} </a>  </li> 
 
         {% endfor %} 
 

@@ -6,7 +6,7 @@
   <body>
     <div class="wrapper">   
       <nav class="main-nav">
-        <a href="">Back Home</a> 
+        <a href="{% url 'home' %}">Back Home</a> 
       </nav>
     </div>
     <p> 
@@ -18,11 +18,11 @@
         <li> Species: {{species}} </li> 
         <li> Type: {{ch_type}} </li>  
         <li> Gender: {{gender}} </li>  
-        <li> Origin: <a href="location/{{ origin.id }}">{{origin.name}} </a> </li>  
+        <li> Origin: <a href="{% url 'location' id=origin.id %}">{{origin.name}} </a> </li>  
 
           {% if location %}
 
-            <li> Last location name: <a href="location/{{ location.id }}" >{{location.name}} </a> </li>   
+            <li> Last location name: <a href="{% url 'location' id=location.id}">{{location.name}} </a> </li>   
 
 
           {% else %}
