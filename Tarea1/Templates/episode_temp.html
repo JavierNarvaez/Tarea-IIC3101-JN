@@ -6,7 +6,7 @@
   <body>
     <div class="wrapper">   
       <nav class="main-nav">
-        <a href="{{ url 'index' }}">Back Home</a> <!-- CAMBIARLE EL LINK AL DEL GITHUB PAGES-->
+        <a href="">Back Home</a> <!-- CAMBIARLE EL LINK AL DEL GITHUB PAGES-->
       </nav>
     </div>
     <p> 
@@ -20,7 +20,7 @@
 
             {% for character in characters %} 
             
-              <li> Character name: <a href="{{ url 'character}}/{{ character.id }}" >{{character.name}} </a> </li>   
+              <li> Character name: <a href="character/{{ character.id }}" >{{character.name}} </a> </li>   
           
             {% endfor %} 
 
