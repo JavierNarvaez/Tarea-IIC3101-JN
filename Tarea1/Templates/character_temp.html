@@ -17,8 +17,17 @@
         <li> Status: {{status}} </li> 
         <li> Species: {{species}} </li> 
         <li> Type: {{ch_type}} </li>  
-        <li> Gender: {{gender}} </li>  
+        <li> Gender: {{gender}} </li> 
+
+        {% if origin %}
+
         <li> Origin: <a href="{% url 'location' id=origin.id %}">{{origin.name}} </a> </li>  
+
+
+          {% else %}
+              <p> El personaje no tiene registrado su origen</p>
+          {% endif %}
+
 
           {% if location %}
 
@@ -28,6 +37,7 @@
           {% else %}
               <p> El personaje no tiene registrada una última ubicación</p>
           {% endif %}
+          
 
           {% if episodes %}
           <li>Episodes:</li>
