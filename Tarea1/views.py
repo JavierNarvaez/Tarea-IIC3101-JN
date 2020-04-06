@@ -4,15 +4,16 @@ from django.template import Template, Context
 import requests
 from Tarea1.settings import BASE_DIR
 
+url_api = "https://integracion-rick-morty-api.herokuapp.com/api/"
 
 def homepage(request): #la barra buscadora y todos los capitulos con ciertos datos (son link buttons)
 
-    response_inicial = requests.get("https://rickandmortyapi.com/api/episode").json() #llama a la página 1
+    response_inicial = requests.get(url_api + "episode").json() #llama a la página 1
     num_pages = response_inicial["info"]["pages"]
     episodes = []
 
     for i in range(int(num_pages)):
-        response = requests.get("https://rickandmortyapi.com/api/episode/?page=" + str(i+1)).json()
+        response = requests.get(url_api + "episode/?page=" + str(i+1)).json()
         for dicc in response['results']:
             episodes.append(dicc)
     
@@ -32,7 +33,7 @@ def homepage(request): #la barra buscadora y todos los capitulos con ciertos dat
 
 def episode(request, id): #sin id, url ni creación
     
-    response = requests.get("https://rickandmortyapi.com/api/episode/" + str(id)).json()
+    response = requests.get(url_api + "episode/" + str(id)).json()
     name = response['name']
     air_date = response['air_date']
     episode = response['episode']
@@ -59,7 +60,7 @@ def episode(request, id): #sin id, url ni creación
 
 def character(request, id): #sin id, url ni creación. Con todos sus lugares y episodios
 
-    response = requests.get("https://rickandmortyapi.com/api/character/" + str(id)).json()
+    response = requests.get(url_api + "character/" + str(id)).json()
     name = response["name"]
     status = response["status"]
     species = response["species"]
@@ -95,7 +96,7 @@ def character(request, id): #sin id, url ni creación. Con todos sus lugares y e
     return HttpResponse(doc)
 
 def location(request, id):
-    response = requests.get("https://rickandmortyapi.com/api/location/" + str(id)).json()
+    response = requests.get(url_api + "location/" + str(id)).json()
     name = response["name"]
     loc_type = response["type"]
     dimension = response["dimension"]
@@ -122,10 +123,10 @@ def search(request): #iterar sobre las pages
     query = request.GET["query_input"]
     aux_query = "?name=" + query
 
-    response_episodes_inicial = requests.get("https://rickandmortyapi.com/api/episode/" + aux_query).json()
+    response_episodes_inicial = requests.get(url_api + "episode/" + aux_query).json()
     episodes = []
     if "error" not in response_episodes_inicial.keys():
-        proximo = "https://rickandmortyapi.com/api/episode/" + aux_query
+        proximo = url_api + "episode/" + aux_query
         while proximo != "":
             response_episodes = requests.get(proximo).json()
             for dicc in response_episodes['results']:
@@ -133,10 +134,10 @@ def search(request): #iterar sobre las pages
             proximo = response_episodes['info']['next']
 
 
-    response_characters_inicial = requests.get("https://rickandmortyapi.com/api/character/" + aux_query).json()
+    response_characters_inicial = requests.get(url_api + "character/" + aux_query).json()
     characters = []
     if "error" not in response_characters_inicial:
-        proximo = "https://rickandmortyapi.com/api/character/" + aux_query
+        proximo = url_api + "character/" + aux_query
         while proximo != "":
             response_characters = requests.get(proximo).json()
             for dicc in response_characters['results']:
@@ -144,10 +145,10 @@ def search(request): #iterar sobre las pages
             proximo = response_characters['info']['next']
     
 
-    response_locations_inicial = requests.get("https://rickandmortyapi.com/api/location/" + aux_query).json()
+    response_locations_inicial = requests.get(url_api + "location/" + aux_query).json()
     locations = []
     if "error" not in response_locations_inicial:
-        proximo = "https://rickandmortyapi.com/api/location/" + aux_query
+        proximo = url_api + "location/" + aux_query
         while proximo != "":
             response_locations = requests.get(proximo).json()
             for dicc in response_locations['results']:
